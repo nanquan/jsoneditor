@@ -1,8 +1,8 @@
 {
   "name": "jsoneditor-drag",
-  "version": "5.5.5.0.1",
+  "version": "0.1.0",
   "main": "./index",
-  "description": "A web-based tool to view, edit, format, and validate JSON based on jsoneditor",
+  "description": "A web-based tool to view, edit, format, and validate JSON based on jsoneditor 5.5.5",
   "tags": [
     "json",
     "editor",
