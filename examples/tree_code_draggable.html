@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>JSONEditor | Switch mode</title>
+
+  <!-- when using the mode "code", it's important to specify charset utf-8 -->
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+  <link href="../dist/jsoneditor.css" rel="stylesheet" type="text/css">
+  <script src="../dist/jsoneditor.js"></script>
+  
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <style type="text/css">
+    body {
+      font: 10.5pt arial;
+      color: #4d4d4d;
+      line-height: 150%;
+      width: 500px;
+    }
+
+    code {
+      background-color: #f5f5f5;
+    }
+
+    #jsoneditor {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+				<input id="droppable" type="text" value="null"/>
+				<button id="updateDataBtn" className="code-editor-btn code-editor-green btn btn-default"  >更新数据</button>
+				<div id="draggableDiv" class="ui-widget-content">
+				  <p>Drag me to my target</p>
+				</div>
+			</div>
+			
+<div id="jsoneditor"></div>
+
+<script>
+  var container = document.getElementById('jsoneditor');
+
+  var options = {
+    mode: 'tree',
+    modes: ['code', 'tree'], // allowed modes
+    onError: function (err) {
+      alert(err.toString());
+    },
+    onModeChange: function (newMode, oldMode) {
+      console.log('Mode switched from', oldMode, 'to', newMode);
+    },
+    onChange: function(){
+        refressDraggableNodes();
+    }
+  };
+
+  var json = {
+    "array": [1, 2, 3],
+    "boolean": true,
+    "null": null,
+    "number": 123,
+    "object": {"a": "b", "c": "d"},
+    "string": "Hello World"
+  };
+
+  var editor = new JSONEditor(container, options, json);
+  editor.expandAll();
+  
+  $(function() {
+	  $( "#updateDataBtn" ).draggable({
+		  //scope: "treeNode"
+	  });
+	  $( "#draggableDiv" ).draggable({
+		  //scope: "treeNode"
+	  });
+	  refressDraggableNodes();
+	  $( "#droppable" ).droppable({
+		  scope: "treeNode",
+	      drop: function( event, ui ) {
+	    	this.value = ui.draggable[0].parentNode.parentNode.attributes['data-jsonPath'];
+	        console.log(ui);
+	      }
+	    });
+  });
+  function refressDraggableNodes(){
+      $( ".jsoneditor-values" ).draggable({
+          scope: "treeNode",
+          //appendTo: "#droppable",
+          //containment:"#droppable",
+          //delay: 200,
+          //distance: 50,
+          //handle:"input",
+          helper: "clone",//or Function
+          revert:"invalid",
+          zIndex: 100,
+          scroll: false
+          //snap: true,
+          //snapMode:"inner",
+          //stack:true
+      });
+  }
+</script>
+</body>
+</html>

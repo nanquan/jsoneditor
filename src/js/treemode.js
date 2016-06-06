@@ -661,6 +661,7 @@ treemode._createFrame = function () {
   this.frame.onmouseup = onEvent;
   this.frame.onmouseover = onEvent;
   this.frame.onmouseout = onEvent;
+  
   // Note: focus and blur events do not propagate, therefore they defined
   // using an eventListener with useCapture=true
   // see http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
@@ -786,7 +787,7 @@ treemode._onEvent = function (event) {
     this._startDragDistance(event);
   }
   if (event.type == 'mousemove' || event.type == 'mouseup' || event.type == 'click') {
-    this._updateDragDistance(event);
+    //this._updateDragDistance(event);
   }
 
   var node = Node.getNodeFromTarget(event.target);

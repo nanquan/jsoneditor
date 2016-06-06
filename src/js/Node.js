@@ -1478,8 +1478,13 @@ Node.prototype.getDom = function() {
   // create row
   dom.tr = document.createElement('tr');
   dom.tr.node = this;
-
   if (this.editor.options.mode === 'tree') { // note: we take here the global setting
+    //add json path
+    var pathArr = this.getPath();
+    var dataJsonPathAtt = 'data-jsonPath';
+    var dataJsonPathVal = pathArr ? pathArr.join(".") : "";
+    dom.tr.attributes[dataJsonPathAtt] = dataJsonPathVal;
+    
     var tdDrag = document.createElement('td');
     if (this.editable.field) {
       // create draggable area

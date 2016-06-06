@@ -25,7 +25,7 @@
  *
  * @author  Jos de Jong, <wjosdejong@gmail.com>
  * @version 5.5.5
- * @date    2016-05-24
+ * @date    2016-06-02
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -9036,6 +9036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.frame.onmouseup = onEvent;
 	  this.frame.onmouseover = onEvent;
 	  this.frame.onmouseout = onEvent;
+	  
 	  // Note: focus and blur events do not propagate, therefore they defined
 	  // using an eventListener with useCapture=true
 	  // see http://www.quirksmode.org/blog/archives/2008/04/delegating_the.html
@@ -9161,7 +9162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._startDragDistance(event);
 	  }
 	  if (event.type == 'mousemove' || event.type == 'mouseup' || event.type == 'click') {
-	    this._updateDragDistance(event);
+	    //this._updateDragDistance(event);
 	  }
 
 	  var node = Node.getNodeFromTarget(event.target);
@@ -13400,8 +13401,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // create row
 	  dom.tr = document.createElement('tr');
 	  dom.tr.node = this;
-
 	  if (this.editor.options.mode === 'tree') { // note: we take here the global setting
+	    //add json path
+	    var pathArr = this.getPath();
+	    var dataJsonPathAtt = 'data-jsonPath';
+	    var dataJsonPathVal = pathArr ? pathArr.join(".") : "";
+	    dom.tr.attributes[dataJsonPathAtt] = dataJsonPathVal;
+	    
 	    var tdDrag = document.createElement('td');
 	    if (this.editable.field) {
 	      // create draggable area

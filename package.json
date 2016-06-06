@@ -1,22 +1,22 @@
 {
-  "name": "jsoneditor",
-  "version": "5.5.5",
+  "name": "jsoneditor-drag",
+  "version": "5.5.5.0.1",
   "main": "./index",
-  "description": "A web-based tool to view, edit, format, and validate JSON",
+  "description": "A web-based tool to view, edit, format, and validate JSON based on jsoneditor",
   "tags": [
     "json",
     "editor",
     "viewer",
     "formatter"
   ],
-  "author": "Jos de Jong <wjosdejong@gmail.com>",
+  "author": "Herber Wang <nanquan520@126.com>",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/josdejong/jsoneditor",
+  "homepage": "https://github.com/nanquan/jsoneditor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/josdejong/jsoneditor.git"
+    "url": "https://github.com/nanquan/jsoneditor.git"
   },
-  "bugs": "https://github.com/josdejong/jsoneditor/issues",
+  "bugs": "https://github.com/nanquan/jsoneditor/issues",
   "scripts": {
     "build": "gulp",
     "watch": "gulp watch",
