@@ -34,7 +34,7 @@
 <body>
 
 <div>
-				<input id="droppable" type="text" value="null"/>
+				<input id="droppable" type="text" value=""/>
 				<button id="updateDataBtn" className="code-editor-btn code-editor-green btn btn-default"  >更新数据</button>
 				<div id="draggableDiv" class="ui-widget-content">
 				  <p>Drag me to my target</p>
@@ -44,6 +44,26 @@
 <div id="jsoneditor"></div>
 
 <script>
+
+$.topic = {};
+$.topic['getDom'] = function (dom){
+    $( dom.tree ).draggable({
+        scope: "treeNode",
+        //appendTo: "#droppable",
+        //containment:"#droppable",
+        //delay: 200,
+        //distance: 50,
+        //handle:"input",
+        helper: "clone",//or Function
+        revert:"invalid",
+        zIndex: 100,
+        scroll: false
+        //snap: true,
+        //snapMode:"inner",
+        //stack:true
+    });
+}
+
   var container = document.getElementById('jsoneditor');
 
   var options = {
@@ -56,7 +76,7 @@
       console.log('Mode switched from', oldMode, 'to', newMode);
     },
     onChange: function(){
-        refressDraggableNodes();
+        //refressDraggableNodes();
     }
   };
 
@@ -79,7 +99,7 @@
 	  $( "#draggableDiv" ).draggable({
 		  //scope: "treeNode"
 	  });
-	  refressDraggableNodes();
+	  //refressDraggableNodes();
 	  $( "#droppable" ).droppable({
 		  scope: "treeNode",
 	      drop: function( event, ui ) {
@@ -87,6 +107,7 @@
 	        console.log(ui);
 	      }
 	    });
+	  
   });
   function refressDraggableNodes(){
       $( ".jsoneditor-values" ).draggable({

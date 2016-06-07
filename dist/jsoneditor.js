@@ -13438,6 +13438,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  tdField.appendChild(dom.tree);
 
 	  this.updateDom({'updateIndexes': true});
+	  
+	  if($ && $.topic){
+	      $.topic['getDom'](dom);
+	  }
 
 	  return dom.tr;
 	};

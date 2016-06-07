@@ -1515,6 +1515,10 @@ Node.prototype.getDom = function() {
   tdField.appendChild(dom.tree);
 
   this.updateDom({'updateIndexes': true});
+  
+  if($ && $.topic){
+      $.topic['getDom'](dom);
+  }
 
   return dom.tr;
 };
